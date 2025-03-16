@@ -1,7 +1,7 @@
 {
-  "name": "websocket",
+  "name": "collaborative-text-editor",
   "version": "1.0.0",
-  "description": "Project to test the power of websocket protocol in a simple Node.js + HTML project",
+  "description": "A lightweight collaborative text editor inspired by Google Docs, with basic formatting and real-time synchronization using QuillJS, Node.js and WebSocket",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
