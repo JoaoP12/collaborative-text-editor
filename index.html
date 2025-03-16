@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+      rel="stylesheet"
+    />
+    <script type="text/javascript">
+      const ws = new WebSocket("ws://localhost:5050");
+      const id = parseInt(Math.random() * 100, 100);
+    </script>
+  </head>
+
+  <body>
+    <h1>Test editor</h1>
+    <div id="editor">
+      <p>Hello World!</p>
+      <p>Some initial <strong>bold</strong> text</p>
+      <p><br /></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+    <script>
+      const quill = new Quill("#editor", {
+        theme: "snow",
+      });
+
+      while (ws.readyState !== WebSocket.OPEN) {
+        console.log("Waiting for connection...");
+      }
+
+      quill.on("text-change", (delta, oldDelta, source) => {
+        console.log("Text changed: ", delta);
+
+        ws.send(JSON.stringify(quill.getContents()));
+      });
+
+      ws.onmessage = function (msg) {
+        console.log("Message received: ", msg.data);
+        quill.setContents(JSON.parse(msg.data), 'silent');
+      };
+    </script>
+  </body>
+</html>
