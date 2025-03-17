@@ -31,6 +31,26 @@ A simple, lightweight collaborative text editor with basic formatting capabiliti
 
 Not sure if will do:
 
+- Break app in microservices:
+  1. Editor Service (Frontend)
+     - Handles the UI with QuillJS for rich text editing.
+     - Communicates with the backend via WebSockets or REST API.
+  2. Collaboration Service
+     - Manages real-time collaboration and synchronization.
+     - WebSockets or WebRTC for real-time communication.
+     - Conflict resolution and operational transformation logic.
+  3. User Management Service
+     - Handles authentication and authorization.
+     - User roles, access control, and session management.
+  4. Document Service
+     - CRUD operations for document storage.
+     - Version control and history tracking.
+  5. Notification Service
+     - Sends updates and notifications when collaborators join or make changes.
+  6. Gateway/API Gateway
+     - Routes requests to appropriate services.
+     - Handles load balancing and security (e.g., rate limiting, authentication).
+- Orchestration with Kubernetes
 - Deal with multiple pages in a document
 - Deal with images in the text
 - Comments in the text
